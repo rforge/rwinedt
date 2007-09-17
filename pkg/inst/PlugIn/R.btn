@@ -1,0 +1,45 @@
+____________________________________________________________________
+
+
+Tool Bar Buttons Bitmaps
+========================
+
+  DO NOT MODIFY THIS FILE UNLESS YOU KNOW WHAT YOU ARE DOING!
+
+____________________________________________________________________
+
+
+*
+
+001 %B\Bitmaps\Buttons\New.bmp
+002 %B\Bitmaps\Buttons\Open.bmp
+003 %B\Bitmaps\Buttons\Save.bmp
+004 %B\Bitmaps\Buttons\Print.bmp
+005 %B\Bitmaps\Buttons\Cut.bmp
+006 %B\Bitmaps\Buttons\Copy.bmp
+007 %B\Bitmaps\Buttons\Paste.bmp
+008 %B\Bitmaps\Buttons\Undo.bmp
+009 %B\Bitmaps\Buttons\Redo.bmp
+010 %B\Bitmaps\Buttons\Table.bmp
+012 %B\Bitmaps\Buttons\Find.bmp
+013 %B\Bitmaps\Buttons\Settings.bmp
+016 %B\Bitmaps\Buttons\Doc-Info.bmp
+017 %B\Bitmaps\Buttons\Delim.bmp
+031 %B\Bitmaps\Buttons\Spell.bmp
+032 %B\Bitmaps\Buttons\Question.bmp
+047 %B\Bitmaps\Buttons\Mailbox.bmp
+049 %B\Bitmaps\Buttons\Search-Doc.bmp
+055 %B\Bitmaps\Buttons\CharMap.bmp
+071 %B\Bitmaps\Buttons\Pegasus.bmp
+078 %B\Bitmaps\Buttons\Print1.bmp
+079 %B\Bitmaps\Buttons\Send.bmp
+087 %B\Bitmaps\Buttons\Treat.bmp
+092 %B\Bitmaps\Buttons\Browse.bmp
+100 %B\Bitmaps\Buttons\R-history.bmp
+101 %B\Bitmaps\Buttons\R-paste.bmp
+102 %B\Bitmaps\Buttons\R-source.bmp
+103 %B\Bitmaps\Buttons\R-script.bmp
+
+-1 The End Of Bitmaps (250 maximum)
+
+____________________________________________________________________

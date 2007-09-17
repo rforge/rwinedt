@@ -1,0 +1,3 @@
+useDynLib(RWinEdt)
+import(methods)
+export(startWinEdt, installWinEdt, createRegistryPath)

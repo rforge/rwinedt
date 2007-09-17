@@ -1,0 +1,1 @@
+ismdi.o: ismdi.c

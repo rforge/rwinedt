@@ -1,0 +1,84 @@
+Changes in RWinEdt_1.7-6:
+-------------------------
+- ismdi() fix for R >= 2.6.0
+
+
+Changes in RWinEdt_1.7-5:
+-------------------------
+- ismdi() symbol fix for R >= 2.4.0
+
+
+Changes in RWinEdt_1.7-3:
+-------------------------
+- Desktop and StartMenu icons can be created using automatically 
+  generated Visual Basic scripts
+
+Changes in RWinEdt_1.7-2:
+-------------------------
+- Vignette added
+- NAMESPACE added
+
+Changes in RWinEdt_1.7-1:
+-------------------------
+- MDI mode is no longer supported for non-english versions of RGui!
+  SDI mode is the default, now
+
+Changes in RWinEdt_1.7-0:
+-------------------------
+- Bug fixes to make it work with an arbitrary translated RGui
+  (as it is the default for some languages starting from R-2.1.0)
+- Recompiled for use with R-2.1.0
+- updated the function index (R-2.1.0)
+
+Changes in RWinEdt_1.6-2:
+-------------------------
+- Recompiled for use with R-2.0.0
+- changes required for lazy loading and friends
+- included Omegahat package SWinRegistry 0.3-3 completely
+- fixed issue with Ctrl-A to select all
+- updated the function index (R-2.0.0)
+
+Changes in RWinEdt_1.6-1:
+-------------------------
+- Fixed: Not loading package "utils" when started from RProfile.
+- Index of function names updated (R-1.9.0 related).
+
+Changes in RWinEdt_1.6-0:
+-------------------------
+- Detects whether RGui has been started in --sdi or --mdi mode
+- Fixed problem that startWinEdt() started WinEdt in its "-V" 
+  (virgin) mode.
+- Added features to move (indent) blocks of code, and insert 
+  comments (#) blockwise, as known from the regular WinEdt mode
+  for LaTeX et al. editing
+- Added version control system that knows when the R-WinEdt 
+  system has to be updated.
+- R-WinEdt no longer sets WinEdt as the default pager.
+
+
+Changes in RWinEdt_1.5-1:
+-------------------------
+- Index of function names updated (R-1.8.0 related).
+- Syntax highlighting 
+  - for Namespace operators (::, :::) added (R-1.8.0 related).
+  - for `backtick names` added (R-1.8.0 related).
+  - for 'single quotes' added.
+  - for old assignment operator "_" removed (R-1.8.0 related).
+  - for "double quotes' fixed.
+  - for assignment operator "=" fixed.
+  - for comparisons (e.g. "==") fixed.
+- Documentation related to the broken (doesn't seem to be fixed soon) 
+  automatical installation of the SWinRegistry package added.
+- More carefully loading SWinRegistry through require().
+
+
+Changes in RWinEdt_1.5-0:
+-------------------------
+- Now providing R-WinEdt as a package called RWinEdt:
+  - introducing a new installation procedure,
+    installed like an R package, called like an R package (library())
+    - requires Omegahat package SWinRegistry
+  - providing an R Menu to call R-WinEdt
+- minor fixes for Windows XP timings
+- minor fixes for Syntax highlighting ("=", "_")
+  

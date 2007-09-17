@@ -1,0 +1,6 @@
+ CMD("Copy");
+ ReplaceInString("1", ">", 0, 1, 1, 9);
+ CopyToClipboard('%!9', 1);
+ LetReg(9,"");
+ Exe("%b\send2R.edt")
+ End;

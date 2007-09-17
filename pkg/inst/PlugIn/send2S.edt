@@ -1,0 +1,13 @@
+ SetFocus("S-Plus");
+ Wait(150); // Windows may needs some time ...
+ PostMessage("S-Plus", $0104, $12, $20000001); // press ALT
+ Wait(150); // Windows may needs some time ...
+ PostMessage("S-Plus", $0105, $12, $20000001); // release ALT
+ PostMessage("S-Plus", $0102, 87, 1); // Char: W -> Windows Menu
+ PostMessage("S-Plus", $0102, 49, 1); // Char: 1 -> Window1 = S Console
+ Wait(150); // Windows may needs some time ...
+ PostMessage("S-Plus", $0104, $12, $20000001); // press ALT
+ Wait(150); // Windows may needs some time ...
+ PostMessage("S-Plus", $0105, $12, $20000001); // release ALT
+ PostMessage("S-Plus", $0102, 69, 1); // Char: E -> Edit Menu
+ PostMessage("S-Plus", $0102, 80, 1); // Char: P -> Paste

@@ -1,0 +1,127 @@
+____________________________________________________________________
+
+
+Menu Images
+===========
+
+  DO NOT MODIFY THIS FILE UNLESS YOU KNOW WHAT YOU ARE DOING!
+
+____________________________________________________________________
+
+
+*
+
+001 %B\Bitmaps\Images\New.bmp
+002 %B\Bitmaps\Images\Open.bmp
+003 %B\Bitmaps\Images\Save.bmp
+004 %B\Bitmaps\Images\SaveAll.bmp
+005 %B\Bitmaps\Images\Print.bmp
+006 %B\Bitmaps\Images\Undo.bmp
+007 %B\Bitmaps\Images\Redo.bmp
+008 %B\Bitmaps\Images\Cut.bmp
+009 %B\Bitmaps\Images\Copy.bmp
+010 %B\Bitmaps\Images\Paste.bmp
+011 %B\Bitmaps\Images\Delete.bmp
+012 %B\Bitmaps\Images\Delete1.bmp
+013 %B\Bitmaps\Images\Delete2.bmp
+014 %B\Bitmaps\Images\Check.bmp
+015 %B\Bitmaps\Images\Check1.bmp
+016 %B\Bitmaps\Images\Check2.bmp
+017 %B\Bitmaps\Images\Find.bmp
+018 %B\Bitmaps\Images\Browse.bmp
+019 %B\Bitmaps\Images\View.bmp
+020 %B\Bitmaps\Images\Table.bmp
+021 %B\Bitmaps\Images\Add.bmp
+022 %B\Bitmaps\Images\Remove.bmp
+023 %B\Bitmaps\Images\Doc.bmp
+024 %B\Bitmaps\Images\Settings.bmp
+025 %B\Bitmaps\Images\Setup.bmp
+026 %B\Bitmaps\Images\Setup1.bmp
+027 %B\Bitmaps\Images\Help.bmp
+028 %B\Bitmaps\Images\About.bmp
+029 %B\Bitmaps\Images\Key.bmp
+030 %B\Bitmaps\Images\TeX.bmp
+031 %B\Bitmaps\Images\TeX1.bmp
+032 %B\Bitmaps\Images\GSView.bmp
+033 %B\Bitmaps\Images\AcroRead.bmp
+034 %B\Bitmaps\Images\Sigma.bmp
+035 %B\Bitmaps\Images\CharMap.bmp
+036 %B\Bitmaps\Images\Typewriter.bmp
+037 %B\Bitmaps\Images\Book.bmp
+038 %B\Bitmaps\Images\Recorder.bmp
+039 %B\Bitmaps\Images\Calculator.bmp
+040 %B\Bitmaps\Images\Explorer.bmp
+041 %B\Bitmaps\Images\Gather.bmp
+042 %B\Bitmaps\Images\Tree.bmp
+043 %B\Bitmaps\Images\Right.bmp
+044 %B\Bitmaps\Images\Left.bmp
+045 %B\Bitmaps\Images\Next.bmp
+046 %B\Bitmaps\Images\Previous.bmp
+047 %B\Bitmaps\Images\Forms.bmp
+048 %B\Bitmaps\Images\Run.bmp
+049 %B\Bitmaps\Images\Window.bmp
+050 %B\Bitmaps\Images\Cascade.bmp
+051 %B\Bitmaps\Images\TileHorz.bmp
+052 %B\Bitmaps\Images\TileVert.bmp
+053 %B\Bitmaps\Images\Table1.bmp
+054 %B\Bitmaps\Images\Doc-Info.bmp
+055 %B\Bitmaps\Images\Delim.bmp
+056 %B\Bitmaps\Images\Search-Doc.bmp
+057 %B\Bitmaps\Images\Send.bmp
+058 %B\Bitmaps\Images\Recycle.bmp
+059 %B\Bitmaps\Images\Key1.bmp
+060 %B\Bitmaps\Images\Create.bmp
+061 %B\Bitmaps\Images\Web.bmp
+062 %B\Bitmaps\Images\Close.bmp
+063 %B\Bitmaps\Images\SaveAs.bmp
+064 %B\Bitmaps\Images\Exit.bmp
+065 %B\Bitmaps\Images\Goto.bmp
+066 %B\Bitmaps\Images\Select.bmp
+067 %B\Bitmaps\Images\Play.bmp
+068 %B\Bitmaps\Images\Play1.bmp
+069 %B\Bitmaps\Images\Play2.bmp
+070 %B\Bitmaps\Images\Work.bmp
+071 %B\Bitmaps\Images\Minimize.bmp
+072 %B\Bitmaps\Images\Arrange.bmp
+073 %B\Bitmaps\Images\Select1.bmp
+074 %B\Bitmaps\Images\Select2.bmp
+075 %B\Bitmaps\Images\SelectAll.bmp
+076 %B\Bitmaps\Images\Back.bmp
+077 %B\Bitmaps\Images\Back1.bmp
+078 %B\Bitmaps\Images\Up.bmp
+079 %B\Bitmaps\Images\Down.bmp
+080 %B\Bitmaps\Images\Netscape.bmp
+081 %B\Bitmaps\Images\Print1.bmp
+082 %B\Bitmaps\Images\Undo1.bmp
+083 %B\Bitmaps\Images\Swap.bmp
+084 %B\Bitmaps\Images\Toggle.bmp
+085 %B\Bitmaps\Images\Sort.bmp
+086 %B\Bitmaps\Images\Append.bmp
+087 %B\Bitmaps\Images\Enumerate.bmp
+088 %B\Bitmaps\Images\Maximize.bmp
+089 %B\Bitmaps\Images\Cap-Toggle.bmp
+090 %B\Bitmaps\Images\Cap-Initial.bmp
+091 %B\Bitmaps\Images\Cap-Large.bmp
+092 %B\Bitmaps\Images\Cap-Small.bmp
+093 %B\Bitmaps\Images\Index.bmp
+094 %B\Bitmaps\Images\BibTeX.bmp
+095 %B\Bitmaps\Images\Replace.bmp
+096 %B\Bitmaps\Images\Delim1.bmp
+096 %B\Bitmaps\Images\Delim1.bmp
+097 %B\Bitmaps\Images\Delim2.bmp
+098 %B\Bitmaps\Images\Delim3.bmp
+099 %B\Bitmaps\Images\Delim4.bmp
+100 %B\Bitmaps\Images\Delim5.bmp
+101 %B\Bitmaps\Images\Mark.bmp
+102 %B\Bitmaps\Images\GetFolder.bmp
+103 %B\Bitmaps\Images\SetFolder.bmp
+104 %B\Bitmaps\Images\Update.bmp
+105 %B\Bitmaps\Images\SaveAs1.bmp
+200 %B\Bitmaps\Images\R_history.bmp
+201 %B\Bitmaps\Images\R_paste.bmp
+202 %B\Bitmaps\Images\R_source.bmp
+203 %B\Bitmaps\Images\R_script.bmp
+
+-1 The End Of Bitmaps (250 maximum)
+
+____________________________________________________________________

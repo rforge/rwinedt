@@ -1,0 +1,5 @@
+ ReplaceInString("1", ">", 0, 1, 1, 9);
+ CopyToClipboard('savehistory(); file.show( paste(getwd(), "\\.Rhistory", sep="") )%!9', 0);
+ LetReg(9,"");
+ Exe("%b\send2R.edt")
+ End;

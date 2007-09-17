@@ -1,0 +1,10 @@
+SetFocus("R Console");
+ Wait(150); // Windows may needs some time ...
+ PostMessage("R Console", $0104, $12, $20000001); // press ALT
+ Wait(150); // Windows may needs some time ...
+ PostMessage("R Console", $0105, $12, $20000001); // press ALT
+ Wait(150); // Windows may needs some time ...
+ PostMessage("R Console", $0100, 39, 0);
+ PostMessage("R Console", $0100, 40, 0);
+ PostMessage("R Console", $0100, 40, 0);
+ PostMessage("R Console", $0100, 13, 0);

@@ -1,0 +1,14 @@
+ SetSel(0);
+ SetBlock(1);
+ Mark(9);
+ ReplaceInString("1", ">", 0, 1, 1, 9);
+ InsLine;
+ NewLine;
+ NewLine;
+ Goto(9);
+ InsText("if() {%!9    %!9}%!9");
+ LetReg(9,"");
+ Goto(9);
+ RestoreBlock;
+ CMD("Next Bullet");
+ End;

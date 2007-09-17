@@ -1,0 +1,425 @@
+%\VignetteIndexEntry{RWinEdt}
+\NeedsTeXFormat{LaTeX2e}
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage[authoryear,round,longnamesfirst]{natbib}
+\newcommand{\email}[1]{\href{mailto:#1}{\normalfont\texttt{#1}}}
+\hypersetup{colorlinks,linktocpage,plainpages=false}
+\definecolor{Red}{rgb}{0.7,0,0}
+\definecolor{Blue}{rgb}{0,0,0.8}
+\hypersetup{linkcolor=Blue,citecolor=Blue,urlcolor=Red}
+\newcommand{\RW}{\textsf{R-WinEdt}}
+\newcommand{\R}{\textsf{R}}
+\newcommand{\ESS}{\textsf{ESS}}
+\newcommand{\W}{\textsf{WinEdt}}
+\newcommand{\Sweave}{\textsf{Sweave}}
+\newcommand{\Emacs}{\textsf{Emacs}}
+\newcommand{\acronym}[1]{{\normalfont\textsc{\lowercase{#1}}}}
+
+\begin{document}
+\title{R--WinEdt}
+
+\author{Uwe Ligges\\
+SFB475, Fachbereich Statistik, Universit\"at Dortmund, Germany\\
+\email{ligges@statistik.uni-dortmund.de}}
+\date{March 2003}
+
+\maketitle
+
+
+\begin{abstract}
+In the first part of this paper the status quo of \RW ,
+a plug-in for the shareware editor \W\ for \textsf{Windows}, is described.
+This description includes the interface between \R\ and \W ,
+convenient editing features like syntax highlighting,
+and the installation procedure.
+The second part is aimed at the future of \RW.
+Is it desirable to improve the plug-in?
+Possible improvements related to the interface,
+and integration of \Sweave\ functionality are discussed.
+\end{abstract}
+
+
+This paper has primarily been published (with minor modifications) in:\\
+Hornik, K., Leisch, F., Zeileis, A. (eds.):
+\emph{Proceedings of the 3rd International Workshop on Distributed Statistical Computing (DSC 2003)}.
+ISSN 1609-395X, \url{http://www.ci.tuwien.ac.at/Conferences/DSC-2003/Proceedings/}.
+
+
+
+
+\section{Introduction}
+\RW\footnote{\url{http://CRAN.R-Project.org/contrib/extra/winedt/}}
+is a plug-in for \W\footnote{\url{http://www.WinEdt.com/}},
+a shareware editor for the operating system
+\textsf{Windows}\footnote{Windows is a trademark of the Microsoft Corporation.}.
+It provides an ``interface'' to \R\ \citep{ihaka},
+a statistical programming language and environment.
+Additionally, a highlighting scheme, which illuminates the syntactical
+structure of the \R\ code, replaces \W 's defaults.
+Shortcuts, menus, and toolbar buttons are included to provide easy access
+to common operations for the user's convenience.
+The existing functionality will be presented in Section~\ref{sec:old},
+just after some comments why \W\ is the editor of my choice in Section~\ref{sec:why}.
+
+Section~\ref{sec:new} is aimed at the future of \RW.
+Its ``interface'' to \R\ will be discussed, as well as possible changes and improvements.
+Further on, it will be discussed whether it is desirable to have full support of
+\Sweave\ \citep{sweave02}, which provides convenient state of the art
+literate statistical analysis with \R .
+
+
+
+\section{Why WinEdt?\label{sec:why}}
+The recommended editor for writing \R\ code is the \Emacs\ \citep{stallmann99}
+with its \ESS\ interface \citep[\emph{Emacs Speaks Statistics};][]{rossini03}.
+In the \R\ manuals, there is a remark on \ESS\ in \cite{r-intro170},
+and an entire Section devoted to ``R and Emacs'' can be found in \cite{r-faq170}.
+In my experience, many \textsf{Windows} users feel uncomfortable\footnote{
+At the time of writing this article,
+John Fox is working on some ``\textsf{Windows} like features'' for \ESS .
+For details see \url{http://www.socsci.mcmaster.ca/jfox/Books/Companion/ESS/}.}
+with the \Emacs . This was indeed the initial occasion for writing \RW .
+
+\W\ is a very powerful and flexible editor focused on \LaTeX ,
+and it is widely known among \LaTeX\ users under \textsf{Windows}
+(see Figure~\ref{fig:LaTeX-mode} for a screenshot).
+\begin{figure}[t!]\begin{center}
+\includegraphics[width=0.8\columnwidth]{RW-LaTeX}
+\caption{\W\ in its ``regular'' \LaTeX\ mode.\label{fig:LaTeX-mode}}
+\end{center}\end{figure}
+It is easy to define Task Bars, Menus, and quite sophisticated
+highlighting schemes in \W .
+The editor also provides an extended Macro language that includes, e.g.,
+capabilities for interaction with the operating system.
+There are convenient ways to automate tasks
+in \W\ using this macro language
+(the Linux user typically uses a Makefile, instead).
+For details I refer to the \W\ manuals.
+
+Because of all these features, it was easy to implement
+the simple plug-in in its current version.
+Unfortunately, \W\ is a commercial (affordable) shareware editor,
+hence I have no access to its sources.
+So it is necessary to convince \W 's author,
+Aleksander Simonic\footnote{\email{alex@winedt.com}},
+in order to get desirable new features into the editor.
+
+
+
+\section{Status quo\label{sec:old}}
+The most easiest way to get to know the current state of \RW\ is to try it out and play around.
+Nevertheless, in this Section \RW 's status quo and some corresponding technicalities will be described.
+See Figure~\ref{fig:R-mode} for a screenshot of \RW\ in action.
+\begin{figure}[t!]\begin{center}
+\includegraphics[width=0.9\columnwidth]{RW-R}
+\caption{\W\ running with the \RW\ plug-in\label{fig:R-mode}}
+\end{center}\end{figure}
+
+The recent version (1.5-0, at the time of writing) of \RW\ works with \W\ 5.2 and later
+on any 32-bit version of \textsf{Windows} and requires \R -1.2.0 or later.
+Of course, any version numbers are subject to change.
+In its most recent version, \RW\ is shipped in form of a binary package for \R\ for \textsf{Windows},
+which requires (for an automatical installation procedure)
+Duncan Temple Lang's \texttt{SWinRegistry} package of
+``The Omega Project for Statistical Computing''\footnote{\url{http://www.Omegahat.org/}}
+in order to perform required tasks related to the \textsf{Windows} registry.
+
+I received quite a lot questions related to the former (but still available)
+manual installation procedure of \RW ,
+which indeed was uncommon in a way, because there was just a simple file {\tt install.bat}
+that had to be invoked in the exactly correct directory.
+
+For detailed installation instructions see \RW 's {\tt ReadMe.txt} file.
+
+
+
+\subsection{Interface\label{sec:Iold}}
+``Interface'' is a Section title which implies more than what has been implemented.
+On the one hand, unfortunately, \W\ does not support
+\acronym{DCOM}\footnote{\acronym{DCOM}: \emph{Distributed Component Object Model}},
+but uses \acronym{DDE}\footnote{\acronym{DDE}: \emph{Dynamic Data Exchange},
+basic technology of Microsoft's \acronym{OLE} (\emph{Object Linking and Embedding}).}
+instead.
+I was not able to convince \W 's author to implement \acronym{DCOM} support in \W .
+On the other hand, there is a \acronym{DCOM} server \citep{neuwirth01} for
+\R\ available, but no \acronym{DDE} interface.
+% -- and I was too lazy to implement the latter.
+
+What I did instead is making use of some features of \W 's macro language in the following manner.
+When any information has to be send to \R, it is constructed by the macro language.
+Then it is copied to the \textsf{Windows} clipboard and pasted into the \R\ Console window
+of RGui using the following macro, which implements the awkward main part of the interface:
+\begin{verbatim}
+ SetFocus("RGui");                           // set focus to R
+ PostMessage("RGui", $0104, $12, $20000001); // press ALT
+ Wait(150);                                  // RGui needs some time
+ PostMessage("RGui", $0105, $12, $20000001); // release ALT
+ PostMessage("RGui", $0102, 87, 1);          // Char: W -> Win. Menu
+ PostMessage("RGui", $0102, 49, 1);          // Char: 1 -> Window1
+                                             //          = R Console
+ Wait(150);                                  // RGui needs some time
+ PostMessage("RGui", $0104, $12, $20000001); // press ALT
+ PostMessage("RGui", $0105, $12, $20000001); // release ALT
+ PostMessage("RGui", $0102, 69, 1);          // Char: E -> Edit Menu
+ PostMessage("RGui", $0102, 80, 1);          // Char: P -> Paste
+\end{verbatim}
+
+So this main part can be described as follows.
+After the focus of programs is switched from \W\ to \R\
+(and both applications have been started, of course),
+key presses are simulated in a manner like one would use the menu without any mouse:
+\begin{enumerate}
+    \item Press {\tt Alt}.
+    \item \textsf{RGui} (and \textsf{Windows}) needs some time to open the menu,
+        (time depends of the operating system, it takes most time on \textsf{Windows XP}).
+    \item Release  {\tt Alt}.
+    \item Press {\tt W} -- opens the menu called {\tt \underline{W}indows}.
+    \item Press {\tt 1} -- selects ``window 1'' which is identical to the \R\ Console;
+        now we are sure to have focussed the \R\ Console (instead of, e.g., an \R\ Graphics window).
+    \item Again, some time is needed to switch to the \R\ Console window.
+    \item Press and release {\tt Alt} to open the menu again.
+    \item Press {\tt E} to open the {\tt \underline{E}dit} menu, and
+    \item press {\tt P} to {\tt \underline{P}aste} the contents of the clipboard
+        into the \R\ Console window.
+\end{enumerate}
+This macro code is written for working with RGui running in {\tt --mdi} mode,
+a version working with RGui's {\tt --sdi} mode is somewhat simpler:
+\begin{verbatim}
+ SetFocus("R Console");
+ Wait(150);
+ PostMessage("R Console", $0104, $12, $20000001);
+ Wait(150);
+ PostMessage("R Console", $0105, $12, $20000001);
+ PostMessage("R Console", $0102, 69, 1);
+ PostMessage("R Console", $0102, 80, 1);
+\end{verbatim}
+
+Obviously, the ``interface'' is an awkward one,
+but it is extremely simple with just 11 (7) lines of macro code.
+There is one ``bug'' in this macro:
+If RGui is minimized, it is not possible to interact with it.
+For a discussion whether it is desirable to improve the interface see Section~\ref{sec:new}.
+
+The question arises, what kind of information can be pasted into the \R\ session.
+Two examples are given, the first one shows a macro that pastes a selected region
+of \R\ code from \RW\ (both shortcuts and icons can be set up to invoke macros):
+\begin{verbatim}
+ CMD("Copy");                   // copy selected text into a buffer
+ ReplaceInString("1", ">", 0, 1, 1, 9); // add a newline at the end
+ CopyToClipboard('%!9', 1);     // copy buffer into the clipboard
+ LetReg(9,"");                  // clear the buffer
+ Exe("%b\send2R.edt")           // execute the main interface
+ End;
+\end{verbatim}
+The second example shows a macro that saves the current file and {\tt source()}s it into \R :
+\begin{verbatim}
+ CMD("Save");           // save the current file
+ GetChildName(9);       // save the ...\path\filename into buffer1
+ DosToUnix("%!9", 8);   // translate "\" to "/" in buffer1
+       // copy a "newline" in buffer2:
+ ReplaceInString("1", ">", 0, 1, 1, 9);
+       // copy 'source("buffer1")buffer2' into the clipboard:
+ CopyToClipboard('source("%!8")%!9', 0);
+ LetReg(9,"");          // clean up buffers 1 and 2
+ LetReg(8,"");
+ Exe("%b\send2R.edt")   // execute the main interface
+ End;
+\end{verbatim}
+
+For details on \W 's macro language I refer to its manual and the two versions of
+``The \W\ Hacker's Guide'' by \cite{alexander98}, and \cite{alexander99}.
+
+A complete list of all available macros is given below.
+The ``template'' macros insert templates into the current document of \W .
+One can jump from one missing entry (marked with ``\verb+..+'' in the examples below) to the other in order to fill in by pressing
+{\tt Ctrl+Space}.
+For each of the marked~(+) items, there are two macros.
+One macro submits information to \R\ and goes back to \W\ at once
+(e.g.~in order to submit several discontinued regions of code),
+whereas the other one is intended to change the focus permanently to \R\ after submission:
+\begin{itemize}
+    \item[+] Copy and paste a selected region of code.
+    \item[+] Copy and paste the current line.
+    \item[+] Save and {\tt source()} the whole file.
+    \item Save the R history in file {\tt .Rhistory} and open it in \RW .
+    \item Insert function template: \verb+function( .. ){ .. }+.
+    \item Insert loop template: \verb+for( .. ){ .. }+.
+    \item Insert if template: \verb+if( .. ){ .. }+.
+    \item Insert ifelse template: \verb+if( .. ){ .. } else{ .. }+.
+\end{itemize}
+
+
+\subsection{Highlighting}
+Setting up highlighting schemes is easy in \W ,
+and corresponding rules are highly configurable (cf.~Figure~\ref{fig:highlight}).
+\begin{figure}[t!]\begin{center}
+\includegraphics[width=0.65\columnwidth]{RW-highlight}
+\caption{\RW\ -- configuring the highlighting scheme\label{fig:highlight}}
+\end{center}\end{figure}
+The very complete \RW\ highlighting scheme distinguishes between the following
+main groups of ``highlighting-classes'' (given in descending order):
+\begin{itemize}
+    \item Comments: \verb+#+ and all stuff thereafter.
+    \item Assignment operators: \verb+<-, <<-, =, ->+, and ``\verb+;+''.
+    \item Control structure keywords:
+        \verb+if, else, ifelse, while, for, break,+\\ \verb+repeat, next+.
+    \item Logical operators: \verb+==, <=, >=, !=, !, <, >, &, &&, |, ||+.
+    \item \verb+function, library, require+
+    \item Special values: \verb+NULL, NA, NaN, Inf, F, T, FALSE, TRUE+,\\
+        and the functions \verb+.Internal+ and \verb+.C+.
+    \item Matrix operators: \verb+%%, %*%, %/%, %in%, %o%, %x%+.
+    \item Contents within quotes and double quotes.
+    \item Extraction of list and slot elements: \verb+$, @+.
+    \item Parenthesis, brackets and braces: \verb+(), [], {}+.
+    \item A list of known \R\ functions, currently those implemented in all shipped and recommended packages.
+    \item Content within brackets in \verb+library(content)+, \verb+require(content)+.
+\end{itemize}
+
+
+\subsection{Auto-completion}
+A ``Command Completion Wizard'' by Holger Danielsson\footnote{
+\email{dani@fbg.schwerte.de}, he seems to be disappeared}
+for \W\ is available at \url{http://www.WinEdt.org/Plugins/complete.php}.
+The wizard is quite easy to use, but not yet integrated into \RW ,
+mainly because I do not know anything about its licensing.
+
+
+
+\section{The future\label{sec:new}}
+Aiming at the future of \RW : Is it desirable to improve the plug-in?
+From my point of view it should be redesigned in order to get \Sweave\ support
+(Section~\ref{sec:Sweave}).
+For the computer scientist's point of view the interface needs to be redesigned as well,
+but not for me being mainly an ``user''.
+
+
+\subsection{Interface}
+In Section~\ref{sec:Iold} the awkward recent ``interface'',
+which works surprisingly stable except for the ``RGui is minimized'' bug, has been described.
+Three ways of improved interfaces can be considered:
+\begin{itemize}
+    \item Convincing \W 's author to integrate \acronym{DCOM} support.
+    \item Writing a \acronym{DDE} interface for \R .
+    \item Using socket connections.
+\end{itemize}
+For me, the current interface works stable enough,
+so I will not make much effort.
+Benefits of possible improvements have to be compared to all the work
+that is required to implement these improvements.
+Nevertheless, contributions will be highly appreciated!
+
+
+\subsection{Sweave\label{sec:Sweave}}
+Since \W\ is focused on \LaTeX , it seems to be natural to combine this
+\LaTeX\ functionality with the capabilities of the \RW\ plug-in.
+Literate statistical analysis (for a discussion related to \ESS\ see
+\citeauthor{rossini:dsc01}, \citeyear{rossini:dsc01})
+with \R\ would benefit from combining those capabilities.
+More specifically, full support of
+\Sweave\footnote{\Sweave\ combines typesetting with \LaTeX\ and
+statistical data analysis with \R\ into integrated statistical documents.}
+by \cite{sweave02} is desirable for convenient state of the art literate
+statistical analysis with \R :
+
+\RW\ was initially written on a Pentium I machine (133MHz, 64MB RAM, \textsf{Windows NT 4.0}),
+where speed and memory efficiency was still an issue.
+Unfortunately, it was not possible to combine both \R\ and \LaTeX\ functionality
+without getting a big penalty in \W 's starting times and memory consumption.
+Today, that is no longer a problem to worry about,
+so a redesigned plug-in could easily provide a combined interface.
+
+The only issue to think about is the configuration of an adequate
+highlighting scheme for combined documents such as \Sweave\ files.
+Thus highlighting must be sensitive to code chunks in a way.
+And, of course, an installation should not corrupt users' adaptions.
+
+
+\section{Conclusion\label{sec:conclusion}}
+The recent version of \RW\ provides the ``\textsf{Windows} way'' of editing \R\ code
+-- convenient, flexible, and powerful -- but it is not quite as powerful as \ESS\ for the \Emacs .
+I think the plug-in should be redesigned in order to implement \Sweave\ support,
+whereas the implementation of a better interface is of less priority.
+
+I would like to invite the reader to submit contributions and other suggestions
+to any of these topics.
+
+\begin{thebibliography}{10}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{{\tt #1}}\fi
+
+\bibitem[Alexander(1999)]{alexander99}
+J.~Alexander.
+\newblock {\em {The \textsf{WinEdt} Hacker's Guide}}, 11 1999.
+\newblock URL \url{http://www.WinEdt.org/}.
+
+\bibitem[Alexander and Marquardt(1998)]{alexander98}
+J.~Alexander and C.~Marquardt.
+\newblock {\em {The \textsf{WinEdt} Hacker's Guide}}, 11 1998.
+\newblock URL \url{http://www.WinEdt.com/}.
+
+\bibitem[Hornik(2003)]{r-faq170}
+K.~Hornik.
+\newblock {\em {The \textsf{R} FAQ,} {\upshape Version 1.7-3}}.
+\newblock {\textsf{R}--Project}, 2003.
+\newblock URL \url{http://CRAN.R-project.org/manuals.html}.
+
+\bibitem[Ihaka and Gentleman(1996)]{ihaka}
+R.~Ihaka and R.~Gentleman.
+\newblock {\textsf{R}: A Language for Data Analysis and Graphics}.
+\newblock {\em {Journal of Computational and Graphical Statistics}}, 5\penalty0
+  (3):\penalty0 299--314, 1996.
+
+\bibitem[Leisch(2002)]{sweave02}
+F.~Leisch.
+\newblock {\em {\textsf{Sweave} User Manual}}.
+\newblock {Institut f\"ur Statistik und Wahrscheinlichkeitstheorie, Technische
+  Universit\"at Wien}, Vienna, Austria, 2002.
+\newblock URL \url{http://www.ci.tuwien.ac.at/~leisch/Sweave}.
+\newblock R Version 1.6.0.
+
+\bibitem[Neuwirth and Baier(2001)]{neuwirth01}
+E.~Neuwirth and T.~Baier.
+\newblock {Embedding \textsf{R} in Standard Software, and the other way round}.
+\newblock In Kurt Hornik and Friedrich Leisch, editors, {\em {Proceedings of
+  the 2nd International Workshop on Distributed Statistical Computing, March
+  15--17}}, Vienna, 2001. {Technische Universit\"at Wien}.
+\newblock URL
+  \url{http://www.ci.tuwien.ac.at/Conferences/DSC-2001/Proceedings/}.
+
+\bibitem[Rossini(2001)]{rossini:dsc01}
+A.~Rossini.
+\newblock {Literate Statistical Analysis}.
+\newblock In Kurt Hornik and Friedrich Leisch, editors, {\em {Proceedings of
+  the 2nd International Workshop on Distributed Statistical Computing, March
+  15--17}}, Vienna, 2001. {Technische Universit\"at Wien}.
+\newblock URL
+  \url{http://www.ci.tuwien.ac.at/Conferences/DSC-2001/Proceedings/}.
+
+\bibitem[Rossini et~al.(2003)Rossini, Heiberger, Sparapani, M{\"a}chler, and
+  Hornik]{rossini03}
+A.~Rossini, R.~M. Heiberger, R.~Sparapani, M.~M{\"a}chler, and K.~Hornik.
+\newblock {\textsf{Emacs} Speaks Statistics:} a multi-platform, multi-package
+  development environment for statistical analysis.
+\newblock {\em {Journal of Computational and Graphical Statistics}}, 2003.
+\newblock Forthcoming.
+
+\bibitem[Stallmann(1999)]{stallmann99}
+R.~M. Stallmann.
+\newblock {\em {The \textsf{Emacs} Editor}}.
+\newblock Boston, 1999.
+\newblock URL \url{http://www.gnu.org}.
+\newblock Version 20.7.
+
+\bibitem[Venables et~al.(2003)Venables, Smith, and {the R Development Core
+  Team}]{r-intro170}
+W.~N. Venables, D.~M. Smith, and {the \textsf{R} Development Core Team}.
+\newblock {\em {An Introduction to \textsf{R},} {\upshape Version 1.7.0}}.
+\newblock {\textsf{R}--Project}, 2003.
+\newblock URL \url{http://CRAN.R-project.org/manuals.html}.
+
+\end{thebibliography}
+\end{document}
