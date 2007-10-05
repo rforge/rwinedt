@@ -37,6 +37,6 @@
     options(editor = paste("\"", .gW$InstallRoot, 
         "\\WinEdt.exe\" -c=\"R-Editor\" -e=R.ini -V", sep = ""))
     system(paste('"', .gW$InstallRoot, '\\WinEdt.exe" -C="R-WinEdt" -E=', 
-        dQuote(normalizePath(file.path(.gW$ApplData, "R.ini"))), sep = ""), wait = FALSE)
+        shQuote(normalizePath(file.path(.gW$ApplData, "R.ini"))), sep = ""), wait = FALSE)
    
 }
