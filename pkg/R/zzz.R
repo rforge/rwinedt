@@ -36,7 +36,6 @@
     winMenuAddItem("R-WinEdt", "Reset R-WinEdt settings", "installWinEdt(.gW$InstallRoot, .gW$ApplData, force = NULL)")
     options(editor = paste("\"", .gW$InstallRoot, 
         "\\WinEdt.exe\" -c=\"R-Editor\" -e=R.ini -V", sep = ""))
-    system(paste('"', .gW$InstallRoot, '\\WinEdt.exe" -C="R-WinEdt" -E=', 
-        shQuote(normalizePath(file.path(.gW$ApplData, "R.ini"))), sep = ""), wait = FALSE)
-   
+    shell(paste('""', .gW$InstallRoot, '\\WinEdt.exe" -C="R-WinEdt" -E=', 
+        shQuote(normalizePath(file.path(.gW$ApplData, "R.ini"))), '"', sep = ""), wait = FALSE)
 }
