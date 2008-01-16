@@ -170,4 +170,4 @@ Known bugs:
 
 --------------------------------
 Uwe Ligges
-ligges@statistik.uni-dortmund.de
+ligges@statistik.tu-dortmund.de
