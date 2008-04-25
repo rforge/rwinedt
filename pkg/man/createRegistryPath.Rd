@@ -48,5 +48,4 @@ createRegistryPath("SOFTWARE\\R-core\\R\\InstallPath", 4, TRUE)
  # a single string with \\
 createRegistryPath(c("a", "b", "c", "x\\y\\z"), "HKEY_LOCAL_MACHINE", TRUE)
 }
-\keyword{}
 
