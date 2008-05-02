@@ -1,3 +1,18 @@
+Changes in RWinEdt_1.8-0:
+-------------------------
+- use R's internal readRegistry() and get rid of
+  SWinRegistry tools dependencies and therefore reduce
+  size of package considerably
+- R >= 2.7.0 required
+- move unused PasteToR.exe to .Rbuildignore
+- update function index for R-2.7.0
+
+
+Changes in RWinEdt_1.7-9:
+-------------------------
+- link appropriately against Graphapp
+
+
 Changes in RWinEdt_1.7-6:
 -------------------------
 - ismdi() fix for R >= 2.6.0
@@ -10,7 +25,7 @@ Changes in RWinEdt_1.7-5:
 
 Changes in RWinEdt_1.7-3:
 -------------------------
-- Desktop and StartMenu icons can be created using automatically 
+- Desktop and StartMenu icons can be created using automatically
   generated Visual Basic scripts
 
 Changes in RWinEdt_1.7-2:
@@ -46,12 +61,12 @@ Changes in RWinEdt_1.6-1:
 Changes in RWinEdt_1.6-0:
 -------------------------
 - Detects whether RGui has been started in --sdi or --mdi mode
-- Fixed problem that startWinEdt() started WinEdt in its "-V" 
+- Fixed problem that startWinEdt() started WinEdt in its "-V"
   (virgin) mode.
-- Added features to move (indent) blocks of code, and insert 
+- Added features to move (indent) blocks of code, and insert
   comments (#) blockwise, as known from the regular WinEdt mode
   for LaTeX et al. editing
-- Added version control system that knows when the R-WinEdt 
+- Added version control system that knows when the R-WinEdt
   system has to be updated.
 - R-WinEdt no longer sets WinEdt as the default pager.
 
@@ -59,7 +74,7 @@ Changes in RWinEdt_1.6-0:
 Changes in RWinEdt_1.5-1:
 -------------------------
 - Index of function names updated (R-1.8.0 related).
-- Syntax highlighting 
+- Syntax highlighting
   - for Namespace operators (::, :::) added (R-1.8.0 related).
   - for `backtick names` added (R-1.8.0 related).
   - for 'single quotes' added.
@@ -67,7 +82,7 @@ Changes in RWinEdt_1.5-1:
   - for "double quotes' fixed.
   - for assignment operator "=" fixed.
   - for comparisons (e.g. "==") fixed.
-- Documentation related to the broken (doesn't seem to be fixed soon) 
+- Documentation related to the broken (doesn't seem to be fixed soon)
   automatical installation of the SWinRegistry package added.
 - More carefully loading SWinRegistry through require().
 
@@ -81,4 +96,4 @@ Changes in RWinEdt_1.5-0:
   - providing an R Menu to call R-WinEdt
 - minor fixes for Windows XP timings
 - minor fixes for Syntax highlighting ("=", "_")
-  
+

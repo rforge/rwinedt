@@ -1,5 +1,3 @@
-.onLoad <- function(lib, pkg) require(methods)
-
 .onAttach <- function(lib, pkg) {
     ## we have a NAMESPACE now: .First.lib <- function(lib, pkg) {
     if(.Platform$GUI != "Rgui" || .Platform$OS.type != "windows")

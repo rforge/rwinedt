@@ -1,5 +1,5 @@
 ==========================================================================================
-Using WinEdt as an editor for R         *** R-WinEdt 1.7-6 ***                  13.09.2007
+Using WinEdt as an editor for R         *** R-WinEdt 1.8-0 ***                  26.04.2008
 ==========================================================================================
 
 Overview:
@@ -13,11 +13,8 @@ Features:
 ---------
 
   - Syntax-Highlighting  (and highlighted printing)
-    (function index of all "base" and "recommended" packages, including:
-        base  boot  class  cluster  datasets  foreign  graphics  grDevices  grid  KernSmooth  lattice
-        MASS  methods  mgcv  nlme  nnet  rpart  spatial  splines  stats  stats4  survival
-        tcltk  tools  utils
-     last update: 15.04.2005, R-2.1.0).
+    (function index of all "base" and "recommended" packages
+     last update: 26.04.2008, R-2.7.0).
 
   - Many R functions at the same time in the same editor.
 
@@ -49,7 +46,7 @@ Features:
 Installation:
 -------------
 
-  - Install R (R-2.4.0 or later)
+  - Install R (R-2.7.0 or later)
 
   - Install WinEdt 5 (V. 5.2, Build: 20001213 or later)
     Note: WinEdt is Shareware (http://www.winedt.com).
@@ -72,10 +69,6 @@ Installation:
     - After upgrading from an old R-WinEdt installation, the user will be asked
       whether the upgrade should be performed, because user-customized changes will 
       be lost when replacing the old R.ini file with a new one.
-
-    - The code of the Omegahat package 'SWinRegistry', version 0.3-3,
-      has been included completely in RWinEdt as a matter of convenience.
-      MANY thanks to the Omegahat developers, in particlular Duncan Temple Lang!
 
 
 
@@ -170,4 +163,4 @@ Known bugs:
 
 --------------------------------
 Uwe Ligges
-ligges@statistik.tu-dortmund.de
+Uwe.Ligges@R-project.org

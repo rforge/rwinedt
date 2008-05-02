@@ -1,11 +1,14 @@
 "getWinEdt" <-
 function(){
-    if(registryKeyExists(c("SOFTWARE", "WinEdt"), top = 3)){
-        WinEdtReg <- getRegistry(c("SOFTWARE", "WinEdt"), top = 3)
-        InstallRoot <- WinEdtReg@values$"Install Root"
-        ApplData <- WinEdtReg@values$"ApplData"
+    WinEdtRegistryKey <- file.path("SOFTWARE", "WinEdt", fsep="\\")
+    WinEdtReg <- try(readRegistry(WinEdtRegistryKey, hive = "HCU", maxdepth = 1), silent = TRUE)
+    if(!inherits(WinEdtReg, "try-error")){
+        InstallRoot <- WinEdtReg[["Install Root"]]
+        ApplData <- WinEdtReg[["ApplData"]]
     } else{
-        if(registryKeyExists(c("SOFTWARE", "WinEdt"), top = 4))
+        temp <- try(readRegistry(WinEdtRegistryKey, hive = "HLM", maxdepth = 1), silent = TRUE)    
+        temp2 <- try(readRegistry(file.path("SOFTWARE", "Team WinEdt", fsep="\\"), hive = "HLM", maxdepth = 1), silent = TRUE)    
+        if(!(inherits(temp, "try-error") && inherits(temp2, "try-error")))
             stop("\n", "Before the first usage, you have to start WinEdt manually one time")
         else
             stop("\n", "WinEdt is not installed properly.", "\n",

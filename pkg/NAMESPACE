@@ -1,3 +1,2 @@
 useDynLib(RWinEdt)
-import(methods)
-export(startWinEdt, installWinEdt, createRegistryPath)
+export(startWinEdt, installWinEdt)

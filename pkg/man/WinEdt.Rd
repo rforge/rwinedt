@@ -19,8 +19,7 @@ startWinEdt(InstallRoot, ApplData)
  if \code{TRUE} those files will be overwritten; if \code{NULL}, the user will be asked.}
 }
 \author{
-  Uwe Ligges \email{ligges@statistik.tu-dortmund.de};
-  \url{http://www.statistik.tu-dortmund.de/~ligges}.
+  Uwe Ligges \email{Uwe.Ligges@R-project.org}; \url{http://www.statistik.tu-dortmund.de/~ligges}.
 }
 \references{
  Ligges, U. (2003): R-WinEdt. 
