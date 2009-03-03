@@ -1,5 +1,5 @@
 ==========================================================================================
-Using WinEdt as an editor for R         *** R-WinEdt 1.8-0 ***                  26.04.2008
+Using WinEdt as an editor for R         *** R-WinEdt 1.8-1 ***                  03.03.2009
 ==========================================================================================
 
 Overview:
@@ -76,7 +76,7 @@ Installation:
 
     ###### Recommended procedure:
     ## Load the package:
-	library(RWinEdt)	# within R!
+    library(RWinEdt)    # within R!
     ## Then create a new document and write an R function.
     ## Click on the symbol "R source" or press ALT+S.
     ## You will be asked to specify a filename (e.g. "R-prog1.R").

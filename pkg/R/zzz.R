@@ -14,18 +14,28 @@
                 "\nUpgrade?")))
             installWinEdt(.gW$InstallRoot, .gW$ApplData, force = TRUE)
     }
-
-   if(ismdi()){
+    WindowTitle <- getWindowTitle()                                     
+    send2RedtLoc <- file.path(.gW$ApplData, "send2R.edt", fsep = "\\")
+    if(ismdi()){
         message("    You are running R in MDI mode which is *not*\n",
             "    supported for non-english translations of RGui.\n",
             "    It is recommended to use R in SDI mode which can be\n",
             "    set in the command line or by clicking in the Menu:\n",
             "    Edit - GUI Preferences: SDI, then Save and restart R.")
-        file.copy(file.path(.rwloc, "send2R--mdi.edt"), 
-            file.path(.gW$ApplData, "send2R.edt", fsep = "\\"), overwrite = TRUE)
-    } else
-        file.copy(file.path(.rwloc, "send2R--sdi.edt"), 
-            file.path(.gW$ApplData, "send2R.edt", fsep = "\\"), overwrite = TRUE)
+        file.copy(file.path(.rwloc, "send2R--mdi.edt"), send2RedtLoc, overwrite = TRUE)
+        if(WindowTitle != "RGui"){ # In case we have another Window title such as for REvolution R
+            edtFile <- readLines(send2RedtLoc)
+            edtFile <- gsub("RGui", WindowTitle, edtFile)
+            writeLines(edtFile, con = send2RedtLoc)
+        }
+    } else{
+        file.copy(file.path(.rwloc, "send2R--sdi.edt"), send2RedtLoc, overwrite = TRUE)
+        if(WindowTitle != "R Console"){ # In case we have another Window title such as for REvolution R
+            edtFile <- readLines(send2RedtLoc)
+            edtFile <- gsub("R Console", WindowTitle, edtFile)
+            writeLines(edtFile, con = send2RedtLoc)
+        }
+    }
    
     winMenuAdd("R-WinEdt")
     winMenuAddItem("R-WinEdt", "Set and start R-WinEdt", "startWinEdt(.gW$InstallRoot, .gW$ApplData)")

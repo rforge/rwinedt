@@ -1,3 +1,9 @@
+Changes in RWinEdt_1.8-1:
+-------------------------
+- allow for other Window titles than RGui / R Console,
+  so it also works for REvolution's versions of R now
+
+
 Changes in RWinEdt_1.8-0:
 -------------------------
 - use R's internal readRegistry() and get rid of
@@ -96,4 +102,3 @@ Changes in RWinEdt_1.5-0:
   - providing an R Menu to call R-WinEdt
 - minor fixes for Windows XP timings
 - minor fixes for Syntax highlighting ("=", "_")
-
