@@ -19,7 +19,7 @@ function(){
     } else
         ApplData <- InstallRoot
     RWinEdtInstalled <- file.exists(file.path(ApplData, "R.ini", fsep = "\\"))
-    RWinEdtVersion <- file.exists(file.path(ApplData, "R.ver", fsep = "\\"))
+    RWinEdtVersion <- file.exists(file.path(InstallRoot, "R.ver", fsep = "\\"))
     if(RWinEdtVersion) 
         RWinEdtVersion <- scan(file.path(InstallRoot, "R.ver", fsep = "\\"), quiet = TRUE)
     return(list(InstallRoot = InstallRoot, RWinEdtInstalled = RWinEdtInstalled, 
