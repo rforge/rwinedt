@@ -6,7 +6,11 @@ function(InstallRoot, ApplData, force = FALSE){
     }
     rwloc <- normalizePath(file.path(system.file(package="RWinEdt"), "PlugIn"))
     
-    dir.create(paste(InstallRoot, "\\macros\\R", sep = ""))
+    dirCreated <- dir.create(paste(InstallRoot, "\\macros\\R", sep = ""))
+    if(!(dirCreated || force))
+        stop(paste("You need Administrator privileges the first time you run RWinEdt.",
+                   "On Windows versions later than XP, please restart R by right click",
+                   "and select 'Run as administrator'.", sep="\n"))
     for(i in dir(rwloc, "\\.edt$"))
         file.copy(file.path(rwloc, i, fsep = "\\"), 
             file.path(InstallRoot, "macros", "R", i, fsep = "\\"), overwrite = force)
