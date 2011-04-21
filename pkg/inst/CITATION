@@ -2,17 +2,17 @@ citHeader("To cite R-WinEdt in publications use:")
 
 citEntry(entry       = "inproceedings",
 	title        = "R-WinEdt",
-	author       = personList(
-			person(first="Uwe", last="Ligges", email="Uwe.Ligges@R-project.org")),
+	author       = c(
+			person(given="Uwe", family="Ligges", email="Uwe.Ligges@R-project.org")),
 	booktitle    = "Proceedings of the 3rd International Workshop on Distributed Statistical Computing (DSC 2003)",
 	year         = 2003,
 	note         = "ISSN 1609-395X",
 	date         = "March 20-22",
 	address      = "TU Wien, Vienna, Austria",
-	editor       = personList(
-			person(first="Kurt", last="Hornik"),
-			person(first="Friedrich", last="Leisch"),
-			person(first="Achim", last="Zeileis")),
+	editor       = c(
+			person(given="Kurt", family="Hornik"),
+			person(given="Friedrich", family="Leisch"),
+			person(given="Achim", family="Zeileis")),
 	url          = "http://www.ci.tuwien.ac.at/Conferences/DSC-2003/Proceedings/",
 	textVersion  = paste("Ligges, U. (2003).",
 		"R-WinEdt.",
