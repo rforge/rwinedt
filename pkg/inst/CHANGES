@@ -1,3 +1,10 @@
+Changes in RWinEdt_1.8-3:
+-------------------------
+- allow for Windows 7: tabs text was hidden
+- error message that admin privileges are reuqired for first start
+- configure stuff no longer needed
+
+
 Changes in RWinEdt_1.8-1:
 -------------------------
 - allow for other Window titles than RGui / R Console,
