@@ -3,6 +3,7 @@ echo *--------------------------------------------*
 echo * ATTENTION: IF YOU INVOKED THIS FILE NOT IN *
 echo * ...\winedt\plugins\r-winedt                *
 echo * YOU SHOULD CANCEL NOW (CTRL+C) !           *
+echo * THIS IS ONLY FOR WinEdt 5.x                *
 echo *--------------------------------------------*
 pause
 mkdir ..\..\macros\R

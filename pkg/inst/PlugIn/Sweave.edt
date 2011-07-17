@@ -1,0 +1,125 @@
+// -*- ASCII:EDT -*-
+// Transform a Rnw file into a LaTeX file with Sweave (or cacheSweave) and
+// and then pdfLaTeX it ...
+// author: Gilbert Ritschard (gilbert.ritschard at unige.ch)
+
+
+// arguments:
+// Reg 6 : if set to "pdf", pdfLaTeX is done directly after Sweave when it ends without error
+//         if set to "dvi"  LaTeXify is done directly
+//         if set to "R" Stangle is run instead of Sweave
+// Reg 7 : should contain the path to the bin directory of your R implementation
+// Reg 8 : if set to "cache", cacheSweave is called instead of Sweave
+// Reg 4 : ""       for R version < 2.12.0
+//         "\i386"  for R 2.12.0 - 32bit
+//         "\x64"   for R 2.12.0 - 64bit
+
+Requires(20070913); // Requires this build of WinEdt to work properly
+SetOK(1);  // Just in case ...
+SetErrorFlag(0);
+
+SetInfoVisible(1);
+  SetInfo(9,"Sweave");
+
+// First we retrieve the R install path
+LetReg(5,|%@('HKEY_LOCAL_MACHINE','Software\R-core\R','InstallPath')|);
+  //// The path to the R binaries can be set before calling the macro (in the menu setup)
+  //// for example: LetReg(7,"c:\Program Files\R\R-2.7.1\bin\")
+
+//IfIStr("%!7","","=","LetReg(7,'%!5\bin\');");
+//IfIStr("%!7","","=","LetReg(7,'%!5\bin\x64\');"); // for the 64bit version of R
+//IfIStr("%!7","","=","LetReg(7,'%!5\bin\i386\');");  // use this one for the 32bit version of R
+IfIStr("%!7","","=","LetReg(7,'%!5\bin%!4\');");  //
+//  Prompt("%!7",0,1);
+
+IfIStr("%!9","open","=","Run('%!7RGui --sdi','%p');JMP('exit');");
+
+
+:runR:
+  CloseFile("%b\_Run.log",1);
+  CloseFile("%b\_Err.log",1);
+  IfFileExists("%b\_Err.log",!"DeleteFile('%b\_Err.log')");
+  IfFileExists("%b\_Run.log",!"DeleteFile('%b\_Run.log')");
+
+
+
+SetOK(1); // Just in case
+
+  IfIStr("%!6","R","=","JMP('tangle');");
+
+
+  // Set LetReg(8,"cache") for cacheSweave
+
+  IfFileExists('%B\Contrib\R\%!8Sweave.R',"",>
+       !"WrL('%%%%%% => %B\Contrib\R\%!8Sweave.R not found <= ');");
+
+  CloseFile('%p\%n.tex');
+  WinExe('','"%!7Rscript" "%B\Contrib\R\%!8Sweave.R" "%n.Rnw"','%p',>
+         'Sweave ...',1110,0,"", "%b\_Run.log", "%b\_Err.log", 111);
+
+  IfFileExists('%p\%n.tex',"Open('%p\%n.tex');");
+  Open("%b\_Run.log");
+ SearchReset;
+ SetSearchCurrentDoc;
+ SetSearchEntire(1);
+ SetSearchForward(1);
+ SetSearchCaseSensitive(1);
+ //SetSearchInline(1);
+  //SetFindStr("You can now run LaTeX on"); // safer, but works only in English
+  SetFindStr("LaTeX");
+  IfFound("JMP('next');","Open('%b\_Err.log');JMP('exit');");
+:next:
+ SearchReset;
+
+  CloseFile("%b\_Run.log");
+  Open('%p\%n.tex');
+
+ // If Reg 6 is set to "dvi", TeXify %N,
+ // if set to "pdf" pdfTeXify,
+ // if empty or "Stop" just set focus on the generated LaTeX file.
+ // "LetReg(6,'xxx');" should be set before launching the macro.
+
+  IfIStr("%!6","","=","LetReg(6,'Stop');");
+  IfIStr("%!6","pdf","=","LetReg(6,'PDF');");
+  IfIStr("%!6","Direct","=","LetReg(6,'PDF');"); // just for backward compatibility
+  IfIStr("%!6","dvi","=","LetReg(6,'');");
+
+  IfIStr("%!6","Stop","=",>
+     "Open('%p\%n.tex');",>
+     "Exe('%%B\Exec\TeX\%!6TeXify.edt');Open('%p\%n.Rnw');");
+  JMP('exit');
+
+:tangle: ==========================
+
+  LetReg(6,'%n.R');
+
+  IfFileExists('%B\Contrib\R\Stangle.R',"",>
+       !"WrL('%%%%%% => %B\Contrib\R\Stangle.R not found <= ');");
+
+  CloseFile('%p\%n.R');
+  WinExe('','"%!7Rscript" "%B\Contrib\R\Stangle.R" "%n.Rnw"','%p',>
+         'tangle ...',1110,0,"", "%b\_Run.log", "%b\_Err.log", 111);
+
+  IfFileExists('%p\%n.R',"Open('%p\%n.R');");
+  Open("%b\_Run.log");
+ SearchReset;
+ SetSearchCurrentDoc;
+ SetSearchEntire(1);
+ SetSearchForward(1);
+ SetSearchCaseSensitive(1);
+  SetFindStr("%!6");
+  IfFound("CloseFile('%b\_Run.log');JMP('exit');","Open('%b\_Err.log');JMP('exit');");
+
+
+:exit: ============================
+  LetReg(4,"");
+  LetReg(5,"");
+  LetReg(6,"");
+  LetReg(7,"");
+  LetReg(8,"");
+  LetReg(9,"");
+
+  SetInfo(1,"");
+  SetInfoVisible(0);
+  SetOK(1);
+End;

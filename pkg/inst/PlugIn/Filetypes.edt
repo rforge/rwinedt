@@ -1,0 +1,21 @@
+Assign('WinEdt-Exe','"%B\WinEdt.exe"');
+Assign('WinEdt-Icons','%B\Contrib\R');
+SetRegKey("HKEY_LOCAL_MACHINE","Software\Classes\.R","WinEdt.R");>
+SetRegKey("HKEY_LOCAL_MACHINE","Software\Classes\.r","WinEdt.R");>
+SetRegKey("HKEY_LOCAL_MACHINE","Software\Classes\.S","WinEdt.R");>
+SetRegKey("HKEY_LOCAL_MACHINE","Software\Classes\.s","WinEdt.R");>
+SetRegKey("HKEY_LOCAL_MACHINE","Software\Classes\WinEdt.R","R script file");
+SetRegKey("HKEY_LOCAL_MACHINE","Software\Classes\WinEdt.R\shell\open");
+SetRegKey("HKEY_LOCAL_MACHINE","Software\Classes\WinEdt.R\shell\open\Command", "%$('WinEdt-Exe'); ""%%1""");
+SetRegKey("HKEY_LOCAL_MACHINE","Software\Classes\WinEdt.R\DefaultIcon","%$('WinEdt-Icons');\R-WinEdt.ico,0");
+
+SetRegKey("HKEY_LOCAL_MACHINE","Software\Classes\.Rnw","WinEdt.Rd");>
+SetRegKey("HKEY_LOCAL_MACHINE","Software\Classes\.Snw","WinEdt.Rd");>
+SetRegKey("HKEY_LOCAL_MACHINE","Software\Classes\.Rd","WinEdt.Rd");>
+SetRegKey("HKEY_LOCAL_MACHINE","Software\Classes\WinEdt.Rd","R documentation / Sweave file");
+SetRegKey("HKEY_LOCAL_MACHINE","Software\Classes\WinEdt.Rd\shell\open");
+SetRegKey("HKEY_LOCAL_MACHINE","Software\Classes\WinEdt.Rd\shell\open\Command", "%$('WinEdt-Exe'); ""%%1""");
+
+Release('WinEdt-Exe');
+Release('WinEdt-Icons');
+End;

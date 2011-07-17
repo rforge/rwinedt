@@ -4,5 +4,6 @@
  LetReg(9,"");
  LetReg(8,"");
  Exe("%b\send2R.edt")
+ Wait("100");
  SetFocus(""); // Back to WinEdt
  End;

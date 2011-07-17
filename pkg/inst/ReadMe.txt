@@ -1,5 +1,5 @@
 ==========================================================================================
-Using WinEdt as an editor for R         *** R-WinEdt 1.8-3 ***                  02.07.2011
+Using WinEdt as an editor for R         *** R-WinEdt 2.0-0 ***                  12.07.2011
 ==========================================================================================
 
 Overview:
@@ -13,8 +13,6 @@ Features:
 ---------
 
   - Syntax-Highlighting  (and highlighted printing)
-    (function index of all "base" and "recommended" packages
-     last update: 26.04.2008, R-2.7.0).
 
   - Many R functions at the same time in the same editor.
 
@@ -76,7 +74,7 @@ Installation:
 
     ###### Recommended procedure:
     ## Load the package:
-    library(RWinEdt)    # within R!
+    library("RWinEdt")    # within R!
     ## Then create a new document and write an R function.
     ## Click on the symbol "R source" or press ALT+S.
     ## You will be asked to specify a filename (e.g. "R-prog1.R").
@@ -89,7 +87,7 @@ Installation:
 
 
 
-  b) Alternative: Manual installation procedure
+  b) Alternative: Manual installation procedure for WinEdt 5.x (not 6.x!)
 
     - Unzip the archive and copy the sub-directory PlugIn into directory 
       ....\winedt\plugins
@@ -147,6 +145,11 @@ Installation:
      my.legend <- legend
      fix(my.legend)
 
+
+
+  c) Alternative: Manual installation procedure for WinEdt 6.x (not 5.x!)
+
+   - Consider to use the R-Sweave mode available from http://www.winedt.org
 
 
 

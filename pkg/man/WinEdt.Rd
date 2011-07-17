@@ -9,14 +9,16 @@ Instead, a simple click into the menu is sufficient.
 }
 \usage{
 getWinEdt()
-installWinEdt(InstallRoot, ApplData, force = FALSE)
-startWinEdt(InstallRoot, ApplData)
+installWinEdt(InstallRoot, ApplData, WinEdtVersion, force = FALSE)
+startWinEdt(InstallRoot, ApplData, WinEdtVersion, args = NULL)
 }
 \arguments{
   \item{InstallRoot}{The path where WinEdt is installed.}
   \item{ApplData}{The path to the user's Application Data directory of WinEdt.}
+  \item{WinEdtVersion}{WinEdt versions < 6 and >= 6 have to be handled very differently.}  
   \item{force}{If \code{FALSE} (default), no files of an already installed version of R-WinEdt are overwritten;
  if \code{TRUE} those files will be overwritten; if \code{NULL}, the user will be asked.}
+  \item{args}{Command line arguments to be passed to the WinEdt instance.}
 }
 \author{
   Uwe Ligges \email{Uwe.Ligges@R-project.org}; \url{http://www.statistik.tu-dortmund.de/~ligges}.

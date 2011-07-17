@@ -1,4 +1,4 @@
-createIcon <- function(InstallRoot, ApplData, Location){
+createIcon <- function(InstallRoot, ApplData, Location, WinEdtVersion){
     tmpfile <- paste(tempfile(), "vbs", sep=".")
     ico <- normalizePath(file.path(system.file(package="RWinEdt"), "PlugIn", "R-WinEdt.ico"))
 
@@ -10,9 +10,11 @@ createIcon <- function(InstallRoot, ApplData, Location){
             paste('oShellLink.IconLocation =', shQuote(paste(ico, ", 0", sep = ""))),
             'oShellLink.Description = "RWinEdt"',
             paste('oShellLink.WorkingDirectory =', shQuote(normalizePath(getwd()))),
-            paste('oShellLink.Arguments = "-E="&chr(34)&', shQuote(normalizePath(file.path(ApplData, "R.ini"))), 
-                '&chr(34)&" "&"-C="&chr(34)&"R-WinEdt"&chr(34)', sep=""),
+            if(WinEdtVersion < 6) paste('oShellLink.Arguments = "-E="&chr(34)&', 
+                                        shQuote(normalizePath(file.path(ApplData, "R.ini"))), 
+                                        '&chr(34)&" "&"-C="&chr(34)&"R-WinEdt"&chr(34)', 
+                                        sep=""),
             'oShellLink.Save'), 
         file = tmpfile)
-    shell(tmpfile)
+    shell.exec(tmpfile)
 }

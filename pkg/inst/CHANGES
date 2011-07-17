@@ -1,3 +1,14 @@
+Changes in RWinEdt_2.0-0:
+-------------------------
+We are WinEdt 6 ready now!
+Took the R-Sweave mode from http://www.winedt.org
+by Gilbert Ritschard and Karl Koeller and ported it 
+back to the RWinEdt package.
+
+The modes for WinEdt 5.x and WinEdt 6.x are very different!
+
+
+
 Changes in RWinEdt_1.8-3:
 -------------------------
 - allow for Windows 7: tabs text was hidden

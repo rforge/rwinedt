@@ -4,10 +4,10 @@
         stop("\nR-WinEdt is designed only for *RGui* on Windows!")
     ## we have a NAMESPACE now: library.dynam("RWinEdt", pkg, lib)
     .gW <- getWinEdt()
-    if(!.gW$RWinEdtInstalled) 
-        installWinEdt(.gW$InstallRoot, .gW$ApplData)
+    if(!.gW$RWinEdtInstalled)
+        installWinEdt(.gW$InstallRoot, .gW$ApplData, .gW$WinEdtVersion)
     .gW <<- .gW <- getWinEdt()
-    if(!.gW$RWinEdtInstalled) 
+    if(!.gW$RWinEdtInstalled)
         warning(paste("Looks like the R-WinEdt installation failed,",
                       "please consider to start R with Administrator privileges the first time you load R-WinEdt.", sep="\n"))
     .rwloc <- file.path(system.file(package="RWinEdt"), "PlugIn")
@@ -16,7 +16,7 @@
             winDialog(type = "yesno", paste("Looks like you have installed a new Version of R-WinEdt.",
                 "\nUser customized settings of R-WinEdt might be lost after upgrade!",
                 "\nUpgrade?"))){
-                    installWinEdt(.gW$InstallRoot, .gW$ApplData, force = TRUE)
+                    installWinEdt(.gW$InstallRoot, .gW$ApplData, .gW$WinEdtVersion, force = TRUE)
                     .gW <<- .gW <- getWinEdt()
                     if(.gW$RWinEdtVersion != scan(file.path(.rwloc, "R.ver", fsep = "\\"), quiet = TRUE))
                         warning(paste("Looks like the R-WinEdt upgrade failed,",
@@ -24,8 +24,8 @@
                                       "the first time you load R-WinEdt after upgrade and try again.", sep="\n"))
         }
     }
-    
-    WindowTitle <- getWindowTitle()                                     
+
+    WindowTitle <- getWindowTitle()
     send2RedtLoc <- file.path(.gW$ApplData, "send2R.edt", fsep = "\\")
     if(ismdi()){
         message("    You are running R in MDI mode which is *not*\n",
@@ -47,14 +47,14 @@
             writeLines(edtFile, con = send2RedtLoc)
         }
     }
-   
+
     winMenuAdd("R-WinEdt")
-    winMenuAddItem("R-WinEdt", "Set and start R-WinEdt", "startWinEdt(.gW$InstallRoot, .gW$ApplData)")
+    winMenuAddItem("R-WinEdt", "Set and start R-WinEdt", "startWinEdt(.gW$InstallRoot, .gW$ApplData, .gW$WinEdtVersion)")
     ## internal pager seems to be better:
     ## winMenuAddItem("R-WinEdt", "Set WinEdt as pager", "options(pager = options('editor')[[1]])")
-    winMenuAddItem("R-WinEdt", "Reset R-WinEdt settings", "installWinEdt(.gW$InstallRoot, .gW$ApplData, force = NULL)")
-    options(editor = paste("\"", .gW$InstallRoot, 
-        "\\WinEdt.exe\" -c=\"R-Editor\" -e=R.ini -V", sep = ""))
-    shell(paste('""', .gW$InstallRoot, '\\WinEdt.exe" -C="R-WinEdt" -E=', 
-        shQuote(normalizePath(file.path(.gW$ApplData, "R.ini"))), '"', sep = ""), wait = FALSE)
+    winMenuAddItem("R-WinEdt", "Reset R-WinEdt settings", "installWinEdt(.gW$InstallRoot, .gW$ApplData, .gW$WinEdtVersion, force = NULL)")
+    options(editor = paste("\"", .gW$InstallRoot, "\\WinEdt.exe\"",
+                           if(.gW$WinEdtVersion < 6) " -c=\"R-Editor\" -e=R.ini -V",
+                           sep = ""))
+    startWinEdt(.gW$InstallRoot, .gW$ApplData, .gW$WinEdtVersion)
 }
