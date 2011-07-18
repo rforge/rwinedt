@@ -59,18 +59,21 @@ SetOK(1); // Just in case
 
   IfFileExists('%p\%n.tex',"Open('%p\%n.tex');");
   Open("%b\_Run.log");
+ SaveFind;
  SearchReset;
  SetSearchCurrentDoc;
  SetSearchEntire(1);
  SetSearchForward(1);
  SetSearchCaseSensitive(1);
+ SetRegEx(1);
  //SetSearchInline(1);
   //SetFindStr("You can now run LaTeX on"); // safer, but works only in English
-  SetFindStr("LaTeX");
+  //SetFindStr("(pdf)latex");   //  SetFindStr("LaTeX");
+  SetFindStr("(pdf)latex|LaTeX");
   IfFound("JMP('next');","Open('%b\_Err.log');JMP('exit');");
 :next:
  SearchReset;
-
+ RestoreFind;
   CloseFile("%b\_Run.log");
   Open('%p\%n.tex');
 
@@ -102,6 +105,7 @@ SetOK(1); // Just in case
 
   IfFileExists('%p\%n.R',"Open('%p\%n.R');");
   Open("%b\_Run.log");
+ SaveFind;
  SearchReset;
  SetSearchCurrentDoc;
  SetSearchEntire(1);
@@ -119,7 +123,7 @@ SetOK(1); // Just in case
   LetReg(8,"");
   LetReg(9,"");
 
-  SetInfo(1,"");
+  RestoreFind;
   SetInfoVisible(0);
   SetOK(1);
 End;
