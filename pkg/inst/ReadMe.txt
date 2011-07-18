@@ -9,6 +9,14 @@ Overview:
 
 
 
+Thanks:
+-------
+
+Many thanks to Gilbert Ritschard and Karl Koeller for the R-Sweave mode that also
+made the transition to WinEdt 6.x support possible.
+
+
+
 Features:
 ---------
 
