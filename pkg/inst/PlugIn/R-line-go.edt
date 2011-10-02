@@ -4,4 +4,5 @@
  LetReg(9,"");
  LetReg(8,"");
  Exe("%b\send2R.edt")
+ CMD('Line Down'); 
  End;
