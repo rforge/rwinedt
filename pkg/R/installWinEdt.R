@@ -15,6 +15,10 @@ delIni <- function(filename, ApplData){
 }
 
 updateIni <- function(filename, InstallRoot, ApplData, rwloc, force = FALSE){
+    Ws <- "//RWinEdt-start"
+    We <- "//RWinEdt-end"
+    RWinEdtini <- c(Ws, readLines(file.path(rwloc, filename)), We, "[END]")
+    filename <- gsub("[[:digit:]]", "", filename)
     localfile <- file.path(ApplData, "ConfigEx", filename)
     if(file.exists(localfile))
         inifile <- readLines(localfile)
@@ -22,15 +26,12 @@ updateIni <- function(filename, InstallRoot, ApplData, rwloc, force = FALSE){
         inifile <- readLines(file.path(InstallRoot, "ConfigEx", filename))
         dir.create(file.path(ApplData, "ConfigEx"), showWarnings=FALSE)
     }
-    Ws <- "//RWinEdt-start"
-    We <- "//RWinEdt-end"
     end <- "^\\[END\\]$"
     if(length(grep(Ws, inifile))){
         if(!force) return(FALSE)
         delIni(filename, ApplData)
         inifile <- readLines(localfile)
     }
-    RWinEdtini <- c(Ws, readLines(file.path(rwloc, filename)), We, "[END]")
     pos <- grep(end, inifile)[1]
     if(pos < 2) {
         inifile <- RWinEdtini
@@ -100,11 +101,14 @@ function(InstallRoot, ApplData, WinEdtVersion, force = FALSE){
         for(i in dir(rwloc6, "\\.bmp$"))
             file.copy(file.path(rwloc6, i, fsep = "\\"),
                 file.path(ApplData, "Bitmaps", "Images", i, fsep = "\\"), overwrite = TRUE)
+        for(i in dir(rwloc6, "\\.png$"))
+            file.copy(file.path(rwloc6, i, fsep = "\\"),
+                file.path(ApplData, "Bitmaps", "Images", i, fsep = "\\"), overwrite = TRUE)
         file.copy(file.path(rwloc, "send2R.edt", fsep = "\\"),
                 file.path(ApplData, "send2R.edt", fsep = "\\"), overwrite = force)
         file.copy(file.path(rwloc, "R.ver", fsep = "\\"),
                 file.path(ApplData, "R.ver", fsep = "\\"), overwrite = force)
-        inis <- c("MainMenu.ini", "Toolbar.ini", "FilterSets.ini",
+        inis <- c("MainMenu.ini", if(WinEdtVersion > 6) "Toolbar2.ini" else "Toolbar.ini", "FilterSets.ini",
                   "Keywords.ini", "Switches.ini", "Modes.ini")
         for(ini in inis)
             updateIni(ini, InstallRoot, ApplData, rwloc, force = force)

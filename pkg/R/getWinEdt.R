@@ -1,8 +1,21 @@
 "getWinEdt" <-
 function(){
-    WinEdtRegistryKey <- file.path("SOFTWARE", "WinEdt 6", fsep="\\")
+    WinEdtRegistryKey <- file.path("SOFTWARE", "WinEdt 8", fsep="\\")
     WinEdtReg <- try(readRegistry(WinEdtRegistryKey, hive = "HCU",
                                   maxdepth = 1), silent = TRUE)
+    WinEdtVersion <- 8
+    if(inherits(WinEdtReg, "try-error")){
+        WinEdtRegistryKey <- file.path("SOFTWARE", "WinEdt 7", fsep="\\")
+        WinEdtReg <- try(readRegistry(WinEdtRegistryKey, hive = "HCU",
+                                      maxdepth = 1), silent = TRUE)
+        WinEdtVersion <- 7
+    }
+    if(inherits(WinEdtReg, "try-error")){    
+        WinEdtRegistryKey <- file.path("SOFTWARE", "WinEdt 6", fsep="\\")
+            WinEdtReg <- try(readRegistry(WinEdtRegistryKey, hive = "HCU",
+                                          maxdepth = 1), silent = TRUE)
+        WinEdtVersion <- 6                                      
+    }                                  
     if(inherits(WinEdtReg, "try-error")){
       ## WinEdt 5.x
         WinEdtVersion <- 5
@@ -32,8 +45,7 @@ function(){
         if(RWinEdtVersion)
             RWinEdtVersion <- scan(file.path(InstallRoot, "R.ver", fsep = "\\"), quiet = TRUE)
     } else {
-      ## WinEdt 6
-        WinEdtVersion <- 6
+      ## WinEdt 6-8
         InstallRoot <- WinEdtReg[["Install Root"]]
         ApplData <- WinEdtReg[["AppData"]]
         if(is.null(ApplData)){
