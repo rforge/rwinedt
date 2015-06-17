@@ -28,7 +28,7 @@
     WindowTitle <- getWindowTitle()
     send2RedtLoc <- file.path(.gW$ApplData, "send2R.edt", fsep = "\\")
     if(ismdi()){
-        message("    You are running R in MDI mode which is *not*\n",
+        packageStartupMessage("    You are running R in MDI mode which is *not*\n",
             "    supported for non-english translations of RGui.\n",
             "    It is recommended to use R in SDI mode which can be\n",
             "    set in the command line or by clicking in the Menu:\n",
