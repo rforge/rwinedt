@@ -1,3 +1,8 @@
+Changes in RWinEdt_2.0-5:
+-------------------------
+Several R CMD check issues.
+
+
 Changes in RWinEdt_2.0-2:
 -------------------------
 Compatibility with WinEdt 8
