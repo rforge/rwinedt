@@ -1,2 +1,3 @@
 useDynLib(RWinEdt)
 export(startWinEdt, installWinEdt)
+importFrom("utils", "readRegistry", "winDialog")
