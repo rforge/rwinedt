@@ -124,7 +124,7 @@ Of course, any version numbers are subject to change.
 In its most recent version, \RW\ is shipped in form of a binary package for \R\ for \textsf{Windows},
 which requires (for an automatical installation procedure)
 Duncan Temple Lang's \texttt{SWinRegistry} package of
-``The Omega Project for Statistical Computing''\footnote{\url{http://www.Omegahat.org/}}
+``The Omega Project for Statistical Computing''\footnote{\url{http://www.Omegahat.net/}}
 in order to perform required tasks related to the \textsf{Windows} registry.
 
 I received quite a lot questions related to the former (but still available)
